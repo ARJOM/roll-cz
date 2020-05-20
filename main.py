@@ -23,11 +23,11 @@ async def on_message(message):
         return
 
     if message.content[0]+message.content[1] == '/r':
-        amount, side = roll(message.content[3:])
+        amount, side, bonus = roll(message.content[3:])
         results = []
         for dice in range(amount):
             results.append(random.randint(1, side))
-        response = "```@{} rolou {} com total {} ```".format(message.author.name, results, sum(results))
+        response = "```@{} rolou {} com total {} ```".format(message.author.name, results, sum(results)+bonus)
         await message.channel.send(response)
 
 client.run(TOKEN)
